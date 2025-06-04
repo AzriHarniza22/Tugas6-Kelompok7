@@ -1,5 +1,5 @@
 README - Tugas 6 Kelompok 7
-📚 Aplikasi manajemen data peserta yang dibangun menggunakan AdonisJS (backend framework Node.js) sebagai bagian dari Tugas 6 mata kuliah Pengembangan Perangkat Lunak.
+📚 Aplikasi manajemen data peserta yang dibangun menggunakan AdonisJS (backend framework Node.js) sebagai bagian dari Tugas 6 praktikum Pengembangan Perangkat Lunak.
 
 ✨ Fitur
 Melihat daftar peserta
