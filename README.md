@@ -32,8 +32,7 @@ cp .env.example .env
 
 4. Jalankan server
 npm run dev
-
-Server akan berjalan di http://localhost:3333
+Server akan berjalan di: http://localhost:3333
 
 5. (Opsional) Jalankan migrasi database jika menggunakan database
 node ace migration:run
@@ -50,5 +49,7 @@ my-adonis-app/
 
 👥 Anggota Kelompok 7
 Azri Harniza – 2208107010034
-M.nouval rifqi – 2208107010075
+
+M. Nouval Rifqi – 2208107010075
+
 Tiara Agustin – 2208107010004
