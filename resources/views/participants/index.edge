@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar Peserta</title>
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #1a1c2c, #5d275d);
+      color: #333;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 2rem;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .card-header {
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      padding: 1.5rem;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .card-header h2 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    
+    .card-body {
+      padding: 1rem;
+    }
+    
+    .alert {
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    
+    .alert-success {
+      background-color: #ebf8ee;
+      color: #38a169;
+      border: 1px solid #c6f6d5;
+    }
+    
+    .participant-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .participant-item {
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+      transition: all 0.2s ease;
+    }
+    
+    .participant-item:last-child {
+      border-bottom: none;
+    }
+    
+    .participant-item:hover {
+      background-color: #f9f9f9;
+    }
+    
+    .participant-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #ff7e5f, #feb47b);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-right: 1rem;
+    }
+    
+    .participant-info {
+      flex: 1;
+    }
+    
+    .participant-name {
+      font-weight: 600;
+      color: #333;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+    
+    .participant-name:hover {
+      color: #ff7e5f;
+    }
+    
+    .participant-workshop {
+      color: #666;
+      font-size: 0.9rem;
+      margin-top: 0.2rem;
+    }
+    
+    .workshop-badge {
+      padding: 0.2rem 0.5rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      background-color: #f0f0f0;
+    }
+    
+    .workshop-badge.unity {
+      background-color: #e2f0ff;
+      color: #1a73e8;
+    }
+    
+    .workshop-badge.unreal {
+      background-color: #e2f5e9;
+      color: #34a853;
+    }
+    
+    .workshop-badge.godot {
+      background-color: #fef2e0;
+      color: #f9ab00;
+    }
+    
+    .workshop-badge.art {
+      background-color: #fce8e8;
+      color: #ea4335;
+    }
+    
+    .actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      justify-content: center;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      color: white;
+    }
+    
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: #888;
+    }
+    
+    .empty-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+    
+    .workshop-filter {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      border: 1px solid #eee;
+      background: white;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+    
+    .filter-btn.active {
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      color: white;
+      border-color: transparent;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Daftar Peserta Workshop</h1>
+    </div>
+    
+    @if(session.has('success'))
+    <div class="alert alert-success">
+      {{ session.get('success') }}
+    </div>
+    @endif
+    
+    <div class="card">
+      <div class="card-header">
+        <h2>Peserta Terdaftar</h2>
+        <div class="workshop-filter">
+          <button class="filter-btn active" data-filter="all">Semua</button>
+          <button class="filter-btn" data-filter="Unity 3D">Unity</button>
+          <button class="filter-btn" data-filter="Unreal Engine">Unreal</button>
+          <button class="filter-btn" data-filter="Godot Engine">Godot</button>
+          <button class="filter-btn" data-filter="Game Art & Design">Art</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <ul class="participant-list">
+          @if(participants.length > 0)
+            @each(participant in participants)
+            <li class="participant-item" data-workshop="{{ participant.workshop }}">
+              <div class="participant-avatar">
+                {{ participant.name.charAt(0) }}
+              </div>
+              <div class="participant-info">
+                <a href="/participants/{{ participant.id }}" class="participant-name">
+                  {{ participant.name }}
+                </a>
+                <div class="participant-workshop">
+                  @if(participant.workshop === 'Unity 3D')
+                    <span class="workshop-badge unity">
+                      {{ participant.workshop }}
+                    </span>
+                  @elseif(participant.workshop === 'Unreal Engine')
+                    <span class="workshop-badge unreal">
+                      {{ participant.workshop }}
+                    </span>
+                  @elseif(participant.workshop === 'Godot Engine')
+                    <span class="workshop-badge godot">
+                      {{ participant.workshop }}
+                    </span>
+                  @elseif(participant.workshop === 'Game Art & Design')
+                    <span class="workshop-badge art">
+                      {{ participant.workshop }}
+                    </span>
+                  @else
+                    <span class="workshop-badge">
+                      {{ participant.workshop }}
+                    </span>
+                  @endif
+                </div>
+              </div>
+            </li>
+            @endeach
+          @else
+            <div class="empty-state">
+              <div class="empty-icon">📋</div>
+              <p>Belum ada peserta yang terdaftar</p>
+            </div>
+          @endif
+        </ul>
+      </div>
+    </div>
+    
+    <div class="actions">
+      <a href="/participants/create" class="btn btn-primary">Daftar Baru</a>
+      <a href="/" class="btn btn-secondary">Kembali ke Beranda</a>
+    </div>
+  </div>
+  
+  <script>
+    // Workshop filtering
+    document.addEventListener('DOMContentLoaded', function() {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const participantItems = document.querySelectorAll('.participant-item');
+      
+      filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          // Remove active class from all buttons
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          
+          // Add active class to clicked button
+          this.classList.add('active');
+          
+          const filter = this.dataset.filter;
+          
+          // Show/hide participants based on filter
+          participantItems.forEach(item => {
+            if (filter === 'all' || item.dataset.workshop === filter) {
+              item.style.display = 'flex';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Peserta</title>
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #1a1c2c, #5d275d);
+      color: #333;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 2rem;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .card-header {
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      padding: 0;
+      color: white;
+      text-align: center;
+      position: relative;
+    }
+    
+    .profile-banner {
+      height: 100px;
+      background: linear-gradient(45deg, #ff7e5f, #feb47b);
+    }
+    
+    .profile-picture {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #ff7e5f, #feb47b);
+      border: 5px solid white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+      margin: -60px auto 0;
+      position: relative;
+    }
+    
+    .participant-name {
+      margin-top: 0.5rem;
+      font-size: 1.8rem;
+      padding: 0 1rem 1rem;
+    }
+    
+    .workshop-badge {
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      background-color: rgba(255, 255, 255, 0.2);
+      margin-top: 0.5rem;
+    }
+    
+    .card-body {
+      padding: 2rem;
+    }
+    
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .info-item {
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      background-color: #f9f9f9;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    
+    .info-label {
+      font-size: 0.9rem;
+      color: #777;
+      margin-bottom: 0.5rem;
+    }
+    
+    .info-value {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    
+    .workshop-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.5rem;
+      background-color: #f9f9f9;
+      border-radius: 0.5rem;
+      margin-top: 1.5rem;
+    }
+    
+    .workshop-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #ff7e5f, #feb47b);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    
+    .workshop-details {
+      flex: 1;
+    }
+    
+    .workshop-title {
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+    
+    .workshop-description {
+      color: #666;
+      font-size: 0.9rem;
+    }
+    
+    .actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      justify-content: center;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      color: white;
+    }
+    
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .qr-code {
+      padding: 1.5rem;
+      background-color: #f9f9f9;
+      border-radius: 0.5rem;
+      margin-top: 1.5rem;
+      text-align: center;
+    }
+    
+    .qr-code-image {
+      width: 150px;
+      height: 150px;
+      background-color: white;
+      padding: 0.5rem;
+      border: 1px solid #eee;
+      margin: 0 auto;
+    }
+    
+    .qr-code-title {
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+    
+    .qr-code-subtitle {
+      color: #666;
+      font-size: 0.9rem;
+      margin-top: 0.3rem;
+    }
+    
+    .back-link {
+      margin-top: 2rem;
+      text-align: center;
+    }
+    
+    .back-link a {
+      color: white;
+      text-decoration: none;
+    }
+    
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Detail Peserta</h1>
+    </div>
+    
+    <div class="card">
+      <div class="card-header">
+        <div class="profile-banner"></div>
+        <div class="profile-picture">
+          {{ participant.name.charAt(0) }}
+        </div>
+        <h2 class="participant-name">{{ participant.name }}</h2>
+        <div class="workshop-badge">{{ participant.workshop }}</div>
+      </div>
+      
+      <div class="card-body">
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-label">Email</div>
+            <div class="info-value">{{ participant.email }}</div>
+          </div>
+          
+          <div class="info-item">
+            <div class="info-label">Nomor HP</div>
+            <div class="info-value">{{ participant.phone }}</div>
+          </div>
+        </div>
+        
+        <div class="workshop-info">
+          <div class="workshop-icon">
+            {{ getWorkshopIcon(participant.workshop) }}
+          </div>
+          <div class="workshop-details">
+            <div class="workshop-title">{{ participant.workshop }}</div>
+            <div class="workshop-description">
+              {{ getWorkshopDescription(participant.workshop) }}
+            </div>
+          </div>
+        </div>
+        
+        <div class="qr-code">
+          <div class="qr-code-image">
+            <img src="/api/placeholder/150/150" alt="QR Code" />
+          </div>
+          <div class="qr-code-title">ID Peserta: {{ participant.id }}</div>
+          <div class="qr-code-subtitle">Tunjukkan QR Code ini saat masuk ke workshop</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="actions">
+      <a href="/participants" class="btn btn-primary">Daftar Peserta</a>
+      <a href="/" class="btn btn-secondary">Kembali ke Beranda</a>
+    </div>
+  </div>
+  
+  <script>
+    // Function to get workshop icon
+    function getWorkshopIcon(workshop) {
+      switch(workshop) {
+        case 'Unity 3D': return '🎮';
+        case 'Unreal Engine': return '🚀';
+        case 'Godot Engine': return '👾';
+        case 'Game Art & Design': return '🎨';
+        default: return '📚';
+      }
+    }
+    
+    // Function to get workshop description
+    function getWorkshopDescription(workshop) {
+      switch(workshop) {
+        case 'Unity 3D':
+          return 'Workshop Unity 3D membantu Anda menguasai teknik-teknik pembuatan game 3D dengan engine populer Unity.';
+        case 'Unreal Engine':
+          return 'Workshop Unreal Engine berfokus pada pembuatan game dengan grafis berkualitas tinggi menggunakan Unreal Engine.';
+        case 'Godot Engine':
+          return 'Workshop Godot Engine mengajarkan pengembangan game multi-platform dengan engine open-source Godot.';
+        case 'Game Art & Design':
+          return 'Workshop Game Art & Design berfokus pada desain karakter, environment, dan UI untuk game.';
+        default:
+          return 'Informasi workshop tidak tersedia.';
+      }
+    }
+  </script>
+</body>
+</html>
