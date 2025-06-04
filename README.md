@@ -1,55 +1,62 @@
-README - Tugas 6 Kelompok 7
-📚 Aplikasi manajemen data peserta yang dibangun menggunakan AdonisJS sebagai bagian dari Tugas 6 praktikum Pengembangan Perangkat Lunak.
+# README - Tugas 6 Kelompok 7
 
-✨ Fitur
-Melihat daftar peserta
+📚 Aplikasi manajemen data peserta yang dibangun menggunakan **AdonisJS** sebagai bagian dari Tugas 6 praktikum **Pengembangan Perangkat Lunak**.
 
-Menambahkan data peserta
+---
 
-Menampilkan detail peserta
+## ✨ Fitur
+- Melihat daftar peserta  
+- Menambahkan data peserta  
+- Menampilkan detail peserta  
+- Halaman welcome  
 
-Halaman welcome
+---
 
-🔧 Teknologi yang Digunakan
-AdonisJS v5 (TypeScript)
+## 🔧 Teknologi yang Digunakan
+- **AdonisJS v5** (TypeScript)  
+- **Edge Templating** (untuk tampilan)  
+- **Node.js**  
+- **npm** untuk package management  
 
-Edge Templating (untuk tampilan)
+---
 
-Node.js
+## 🚀 Cara Menjalankan Proyek
 
-npm untuk package management
+**1. Clone repositori ini**  
+`git clone https://github.com/AzriHarniza22/Tugas6-Kelompok7.git`  
+`cd Tugas6-Kelompok7/my-adonis-app`
 
-🚀 Cara Menjalankan Proyek
-1. Clone repositori ini
-git clone https://github.com/AzriHarniza22/Tugas6-Kelompok7.git
-cd Tugas6-Kelompok7/my-adonis-app
+**2. Install dependencies**  
+`npm install`
 
-2. Install dependencies
-npm install
+**3. Copy konfigurasi environment**  
+`cp .env.example .env`
 
-3. Copy konfigurasi environment
-cp .env.example .env
+**4. Jalankan server**  
+`npm run dev`  
+Server akan berjalan di: `http://localhost:3333`
 
-4. Jalankan server
-npm run dev
-Server akan berjalan di: http://localhost:3333
+**5. (Opsional) Jalankan migrasi database jika menggunakan database**  
+`node ace migration:run`
 
-5. (Opsional) Jalankan migrasi database jika menggunakan database
-node ace migration:run
+---
 
-📁 Struktur Folder Penting
-my-adonis-app/
-├── start/ → Konfigurasi awal AdonisJS (routes, kernel, env)
-├── resources/
-│ └── views/ → Template halaman (Edge)
-│ └── pages/participants/
-├── .env → Konfigurasi environment
-├── ace.js → Entry point Adonis
-├── package.json → Dependency dan script
+## 📁 Struktur Folder Penting
 
-👥 Anggota Kelompok 7
-Azri Harniza – 2208107010034
+my-adonis-app/  
+├── start/ → Konfigurasi awal AdonisJS (routes, kernel, env)  
+├── resources/  
+│   └── views/ → Template halaman (Edge)  
+│       └── pages/participants/  
+├── .env → Konfigurasi environment  
+├── ace.js → Entry point Adonis  
+├── package.json → Dependency dan script  
 
-M. Nouval Rifqi – 2208107010075
+---
 
-Tiara Agustin – 2208107010004
+## 👥 Anggota Kelompok 7
+- **Azri Harniza** – 2208107010034  
+- **M. Nouval Rifqi** – 2208107010075  
+- **Tiara Agustin** – 2208107010004  
+
+---
